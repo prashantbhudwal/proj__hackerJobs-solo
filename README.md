@@ -4,10 +4,10 @@ A simple movie watch-list app that has an add to cart functionality.
 
 # Stack
 
-Next 13
-Tailwind
-Typescript
-Server Components
+- Next 13
+- Tailwind
+- Typescript
+- Server Components
 
 # Requirements and Analysis
 
