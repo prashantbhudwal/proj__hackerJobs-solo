@@ -1,6 +1,6 @@
 # About
 
-A simple movie watch-list app that has an add to cart functionality.
+A simple job board called HackerJobs that fetches job listings from Hacker News API and allows users to save jobs for later viewing.
 
 # Stack
 
@@ -13,20 +13,20 @@ A simple movie watch-list app that has an add to cart functionality.
 
 ## Figma File
 
-https://www.figma.com/file/jhFRdFIdHpRxsDznNXtpXw/Watchlist-Creator?node-id=2%3A17
+[https://www.figma.com/file/jhFRdFIdHpRxsDznNXtpXw/Watchlist-Creator?node-id=2%3A17](https://www.figma.com/file/jhFRdFIdHpRxsDznNXtpXw/Watchlist-Creator?node-id=2%3A17)
 
 ## Stories
 
 Users will be able to
 
-- Search for a movie
-- Add movie to the watch-list that persists on their laptop
+- Search for a job
+- Add a job to their saved jobs list that persists on their device
 - Switch to dark mode
-- Click the movie card and go to the movie page
+- Click the job card and go to the job details page
 
 ## Possible Components
 
-- Movie Card
+- Job Card
   - Visual States
     - Added
     - Removed
@@ -38,17 +38,17 @@ Users will be able to
     - Fetched
 - Header
   - Visual States
-    - Movies Page Header
-    - Watch-list Header
+    - Jobs Search Page Header
+    - Saved Jobs Header
 - Body Wrapper
-  - With Movies
-  - Without Movies in Movies Page
-  - Without Movies in Watch-list Page
+  - With Jobs
+  - Without Jobs in Jobs Search Page
+  - Without Jobs in Saved Jobs Page
 
 ## Possible Routes
 
 - Static
-  - Movies Search Page
-  - Watch-list Page
+  - Jobs Search Page
+  - Saved Jobs Page
 - Dynamic
-  - Movie page
+  - Job Details Page
