@@ -32,7 +32,11 @@ export function Job({ state }: { state: string }) {
           >
             Apply Now
           </a>
-          <button className="bg-purple-600 text-white rounded-sm px-2 py-2 w-32">
+          <button
+            className={`bg-purple-600 text-white rounded-sm px-2 py-2 w-32 ${
+              state === "added" ? "bg-gray-600" : "bg-purple-600"
+            }`}
+          >
             {state === "added" ? "Saved" : "Save for Later"}
           </button>
         </div>
