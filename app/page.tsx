@@ -1,4 +1,4 @@
-import MovieStorybook from "../components/Movie";
+import MovieStorybook from "../components/Job";
 
 export default function Home() {
   return (
