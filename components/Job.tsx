@@ -19,7 +19,7 @@ export function Job({ state }: { state: string }) {
         <h1 className="text-lg font-semibold">{title}</h1>
         <p>
           Posted on{" "}
-          {new Date().toLocaleDateString("en-US", {
+          {new Date(date * 1000).toLocaleDateString("en-US", {
             day: "numeric",
             month: "short",
             year: "numeric",
