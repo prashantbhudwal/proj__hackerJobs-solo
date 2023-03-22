@@ -1,23 +1,21 @@
-import Job from "../components/Job";
-import JobStack from "../components/JobStack";
+"use client";
+import useSWR from "swr";
+import HackerJobs from "./jobs/page";
 
 export default function Home() {
-  const jobData = {
-    by: "aisrael",
-    id: 35154599,
-    score: 1,
-    time: 1678813241,
-    title: "PropelAuth (YC W22) Is Hiring Engineers",
-    type: "job",
-    url: "https://www.ycombinator.com/companies/propelauth/jobs",
+  //  Used SWR because of some issue with native fetch in server components
+  const fetcher = function () {
+    return fetch(`https://hacker-news.firebaseio.com/v0/jobstories.json`)
+      .then((res) => res.json())
+      .then((data) => data);
   };
-  return (
-    <main>
-      <JobStack>
-        <Job jobData={jobData} state="added" />
-        <Job jobData={jobData} state="added" />
-        <Job jobData={jobData} state="added" />
-      </JobStack>
-    </main>
-  );
+  const {
+    data: allJobs,
+    error,
+    isLoading,
+  } = useSWR(`https://hacker-news.firebaseio.com/v0/jobstories.json`, fetcher);
+  if (error)  return <h1>Error</h1>;
+  if (isLoading)  return <h1>Loading</h1>;
+
+  return <HackerJobs allJobs={allJobs} />;
 }
