@@ -1,14 +1,14 @@
 "use client";
 import Button from "./Button";
 interface JobProps {
-  jobId: any;
+ 
   clickHandler: (job: JobData) => void;
   inWishlist: (jobId: number) => boolean;
   jobData: JobData
 }
 
 export default function Job({
-  jobId,
+
   jobData,
   clickHandler,
   inWishlist,
