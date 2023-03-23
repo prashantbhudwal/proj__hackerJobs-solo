@@ -2,20 +2,18 @@
 import Button from "./Button";
 interface JobProps {
   jobId: any;
-  jobFetcher: any;
   clickHandler: (job: JobData) => void;
   inWishlist: (jobId: number) => boolean;
+  jobData: JobData
 }
 
 export default function Job({
   jobId,
-  jobFetcher,
+  jobData,
   clickHandler,
   inWishlist,
 }: JobProps) {
-  const [jobData, error, isLoading] = jobFetcher(jobId);
-  if (error) return <h1>Error</h1>;
-  if (isLoading) return <h1>Loading</h1>;
+  
   const { id, url: jobUrl, title, time: date } = jobData;
   return (
     <section className="flex flex-col gap-3 shadow-lg px-6 py-5 rounded-lg">
