@@ -1,4 +1,3 @@
-"use client";
 import Button from "./Button";
 interface JobProps {
   jobData: JobData;
