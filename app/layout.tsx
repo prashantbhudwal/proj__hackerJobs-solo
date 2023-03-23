@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import "./globals.css";
+import WishlistContextProvider from "./context/WishlistContextProvider";
 
 export const metadata = {
   title: "Movie Watchlist",
@@ -14,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        {children}
+        <WishlistContextProvider>
+          <Header />
+          {children}
+        </WishlistContextProvider>
       </body>
     </html>
   );
