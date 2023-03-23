@@ -1,13 +1,18 @@
 "use client";
-export default function Job({
-  state,
-  jobId,
-  jobFetcher,
-}: {
-  state: string;
+import Button from "./Button";
+interface JobProps {
   jobId: any;
   jobFetcher: any;
-}) {
+  clickHandler: (job: JobData) => void;
+  inWishlist: (jobId: number) => boolean;
+}
+
+export default function Job({
+  jobId,
+  jobFetcher,
+  clickHandler,
+  inWishlist,
+}: JobProps) {
   const [jobData, error, isLoading] = jobFetcher(jobId);
   if (error) return <h1>Error</h1>;
   if (isLoading) return <h1>Loading</h1>;
@@ -30,13 +35,11 @@ export default function Job({
         >
           Apply Now
         </a>
-        <button
-          className={`bg-purple-600 text-white rounded-sm px-2 py-2 w-32 ${
-            state === "added" ? "bg-gray-600" : "bg-purple-600"
-          }`}
-        >
-          {state === "added" ? "Saved" : "Save for Later"}
-        </button>
+        <Button
+          inWishlist={inWishlist}
+          clickHandler={clickHandler}
+          jobData={jobData}
+        />
       </div>
     </section>
   );
