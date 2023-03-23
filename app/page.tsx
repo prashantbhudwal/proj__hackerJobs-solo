@@ -1,20 +1,18 @@
 "use client";
-import useSWR from "swr";
-import JobStack from "@/components/JobStack";
+import Stack from "@/components/Stack";
+import Job from "@/components/Job";
+import useAllHNJobs from "./hooks/useAllHNJobs";
+import useHNJob from "./hooks/useHNJob";
 export default function Home() {
-  //  Used SWR because of some issue with native fetch in server components
-  const fetcher = function () {
-    return fetch(`https://hacker-news.firebaseio.com/v0/jobstories.json`)
-      .then((res) => res.json())
-      .then((data) => data);
-  };
-  const {
-    data: allJobs,
-    error,
-    isLoading,
-  } = useSWR(`https://hacker-news.firebaseio.com/v0/jobstories.json`, fetcher);
+  const [allJobs, error, isLoading] = useAllHNJobs();
   if (error) return <h1>Error</h1>;
-  if (isLoading) return <h1>Loading</h1>;
+  if (isLoading) return <h1></h1>;
 
-  return <JobStack allJobs={allJobs} />;
+  return (
+    <Stack>
+      {allJobs.map((jobId: number) => (
+        <Job jobId={jobId} state="added" key={jobId} jobFetcher={useHNJob} />
+      ))}
+    </Stack>
+  );
 }
