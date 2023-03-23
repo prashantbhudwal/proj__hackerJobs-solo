@@ -1,20 +1,11 @@
 "use client";
 import Button from "./Button";
 interface JobProps {
- 
-  clickHandler: (job: JobData) => void;
-  inWishlist: (jobId: number) => boolean;
-  jobData: JobData
+  jobData: JobData;
 }
 
-export default function Job({
-
-  jobData,
-  clickHandler,
-  inWishlist,
-}: JobProps) {
-  
-  const { id, url: jobUrl, title, time: date } = jobData;
+export default function Job({ jobData }: JobProps) {
+  const { url: jobUrl, title, time: date } = jobData;
   return (
     <section className="flex flex-col gap-3 shadow-lg px-6 py-5 rounded-lg">
       <h1 className="text-lg font-semibold">{title}</h1>
@@ -33,11 +24,7 @@ export default function Job({
         >
           Apply Now
         </a>
-        <Button
-          inWishlist={inWishlist}
-          clickHandler={clickHandler}
-          jobData={jobData}
-        />
+        <Button jobData={jobData} />
       </div>
     </section>
   );
