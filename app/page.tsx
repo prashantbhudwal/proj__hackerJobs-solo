@@ -1,8 +1,10 @@
 "use client";
 import Stack from "@/components/Stack";
 import Job from "@/components/Job";
-import useAllHNJobs from "./hooks/useAllHNJobs";
-import useHNJob from "./hooks/useHNJob";
+import useAllHNJobs from "./hooks/useHNJobsIds";
+import useHNJobs from "./hooks/useHNJobs";
+
+
 import { useContext } from "react";
 import WishlistContext from "./context/WishlistContext";
 
@@ -10,19 +12,22 @@ export default function Home() {
   const { addToWishlist, removeFromWishlist, isInWishList } =
     useContext(WishlistContext);
 
-  const [allJobs, error, isLoading] = useAllHNJobs();
-  if (error) return <h1>Error</h1>;
-  if (isLoading) return <h1></h1>;
+   const [allJobIds, errorAllJobs, isLoadingAllJobs] = useAllHNJobs();
+   const [jobsData, errorJobsData, isLoadingJobsData] = useHNJobs(allJobIds);
+
+   if (errorAllJobs || errorJobsData) return <h1>Error</h1>;
+   if (isLoadingAllJobs || isLoadingJobsData) return <h1>Loading...</h1>;
+
 
   return (
     <Stack>
-      {allJobs.map((jobId: number) => (
+      {jobsData.map((jobData: JobData) => (
         <Job
-          jobId={jobId}
-          key={jobId}
-          jobFetcher={useHNJob}
+          jobId={jobData.id}
+          key={jobData.id}
+          jobData={jobData}
           clickHandler={
-            isInWishList(jobId) ? removeFromWishlist : addToWishlist
+            isInWishList(jobData.id) ? removeFromWishlist : addToWishlist
           }
           inWishlist={isInWishList}
         />
