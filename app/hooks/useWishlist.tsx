@@ -8,7 +8,6 @@ export default function useWishlist() {
   };
 
   const addToWishlist = function (job: JobData) {
-    console.log("clicked");
     const isInWishlist = wishlist.some(
       (savedJob: JobData) => savedJob.id === job.id
     );
